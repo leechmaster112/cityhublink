@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cityhublink - Business Directory</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito Sans&family=Inter&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #ffffff;
+            --foreground: #020817;
+            --card: #ffffff;
+            --card-foreground: #020817;
+            --popover: #ffffff;
+            --popover-foreground: #020817;
+            --primary: #0f172a;
+            --primary-foreground: #f8fafc;
+            --secondary: #f1f5f9;
+            --secondary-foreground: #0f172a;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --accent: #7FCDCD;
+            --accent-foreground: #ffffff;
+            --border: #e2e8f0;
+            --input: #e2e8f0;
+            --ring: #020817;
+            --radius: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background-color: var(--primary);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .header-title {
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--primary-foreground);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .header-description {
+            color: var(--primary-foreground);
+            opacity: 0.9;
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .business-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .business-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .business-content {
+            padding: 1.5rem;
+        }
+
+        .business-title {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+
+        .business-title:hover {
+            color: var(--accent);
+        }
+
+        .business-address {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-details {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .view-details:hover {
+            opacity: 0.9;
+        }
+
+        .footer {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 1rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .pagination-button {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background-color: var(--card);
+            color: var(--foreground);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-button:hover:not(:disabled) {
+            background-color: var(--secondary);
+        }
+        
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-active {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            border-color: var(--accent);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted-foreground);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted-foreground);
+            background-color: var(--secondary);
+            border-radius: var(--radius);
+        }
+
+        @media (max-width: 768px) {
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-title {
+                font-size: 2rem;
+            }
+
+            .header-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="header-title">Cityhublink</h1>
+            <p class="header-description">Find the best local businesses in your area</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="business-grid" class="business-grid">
+            <!-- Business listings will be loaded dynamically -->
+            <div class="loading">Loading local businesses...</div>
+        </div>
+        
+        <div id="pagination" class="pagination">
+            <!-- Pagination controls will be added dynamically -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="current-year">2023</span> Cityhublink. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Define the domain and API endpoint for your site
+        // Use the original domain name for API requests (not capitalized)
+        const domain = 'cityhublink.directory';
+        // Always use the production API endpoint
+        const apiEndpoint = 'https://api.localrank.so/citations/directory-urls/';
+        
+        // Pagination state
+        let currentPage = 1;
+        let totalPages = 1;
+        
+        // Fetch directory data from API
+        async function fetchDirectoryData(page = 1) {
+            try {
+                const response = await fetch(`${apiEndpoint}?domain=${domain}&page=${page}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch directory data');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching directory data:', error);
+                document.getElementById('business-grid').innerHTML = `
+                    <div class="no-results">
+                        Failed to load directory data. Please try again later.
+                    </div>
+                `;
+                return null;
+            }
+        }
+        
+        // Render business cards
+        function renderBusinessCards(businesses) {
+            const businessGrid = document.getElementById('business-grid');
+            
+            if (!businesses || businesses.length === 0) {
+                businessGrid.innerHTML = `
+                    <div class="no-results">
+                        No businesses found in this directory yet.
+                    </div>
+                `;
+                return;
+            }
+            
+            businessGrid.innerHTML = businesses.map(business => {
+                const locationInfo = business.location ? 
+                    `${business.location.address}, ${business.location.city}, ${business.location.state} ${business.location.postal_code}` : 
+                    'Location not available';
+                
+                return `
+                    <div class="business-card">
+                        <div class="business-content">
+                            <a href="${business.url}" class="business-title">${business.name}</a>
+                            <div class="business-address">${locationInfo}</div>
+                            <a href="${business.url}" class="view-details">View Details</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Render pagination controls
+        function renderPagination(count, next, previous) {
+            const paginationElement = document.getElementById('pagination');
+            
+            // Calculate total pages based on count and page size (default 20)
+            const pageSize = 20;
+            totalPages = Math.ceil(count / pageSize);
+            
+            // Don't show pagination if there's only one page
+            if (totalPages <= 1) {
+                paginationElement.innerHTML = '';
+                return;
+            }
+            
+            // Create pagination buttons
+            let paginationHTML = `
+                <button class="pagination-button" id="prev-page" ${!previous ? 'disabled' : ''}>Previous</button>
+            `;
+            
+            // Add page numbers (limited to show max 5 pages)
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `
+                    <button class="pagination-button ${i === currentPage ? 'pagination-active' : ''}" data-page="${i}">${i}</button>
+                `;
+            }
+            
+            paginationHTML += `
+                <button class="pagination-button" id="next-page" ${!next ? 'disabled' : ''}>Next</button>
+            `;
+            
+            paginationElement.innerHTML = paginationHTML;
+            
+            // Add event listeners for pagination buttons
+            document.querySelectorAll('.pagination-button[data-page]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const page = parseInt(button.getAttribute('data-page'));
+                    loadPage(page);
+                });
+            });
+            
+            // Previous button
+            const prevButton = document.getElementById('prev-page');
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        loadPage(currentPage - 1);
+                    }
+                });
+            }
+            
+            // Next button
+            const nextButton = document.getElementById('next-page');
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        loadPage(currentPage + 1);
+                    }
+                });
+            }
+        }
+        
+        // Load a specific page
+        async function loadPage(page) {
+            currentPage = page;
+            
+            // Show loading state
+            document.getElementById('business-grid').innerHTML = `
+                <div class="loading">Loading page ${page}...</div>
+            `;
+            
+            // Fetch and render data
+            const data = await fetchDirectoryData(page);
+            if (data) {
+                renderBusinessCards(data.results);
+                renderPagination(data.count, data.next, data.previous);
+            }
+        }
+        
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage(1);
+        });
+    </script>
+</body>
+</html> 
