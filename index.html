@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cityhublink - Business Directory</title>
+    <title>cityhublink.directory - Business Directory</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,7 +211,7 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <h1 class="header-title">Cityhublink</h1>
+            <h1 class="header-title">cityhublink.directory</h1>
             <p class="header-description">Find the best local businesses in your area</p>
         </div>
     </header>
@@ -229,7 +229,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© <span id="current-year">2023</span> Cityhublink. All rights reserved.</p>
+            <p>© <span id="current-year">2023</span> cityhublink.directory. All rights reserved.</p>
         </div>
     </footer>
     
@@ -241,7 +241,7 @@
         // Use the original domain name for API requests (not capitalized)
         const domain = 'cityhublink.directory';
         // Always use the production API endpoint
-        const apiEndpoint = 'https://api.localrank.so/citations/directory-urls/';
+        let apiEndpoint = 'https://api.localrank.so/citations/directory-urls/';
         
         // Pagination state
         let currentPage = 1;
