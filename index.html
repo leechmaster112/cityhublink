@@ -336,13 +336,6 @@
             if (footerDomainElement) {
                 footerDomainElement.textContent = formatDomainName(domainName);
             }
-            
-            // Set Get Listed button mailto link
-            const getListedBtn = document.getElementById('get-listed-btn');
-            if (getListedBtn) {
-                getListedBtn.href = `mailto:hello@${domainName}`;
-            }
-            
             // Load initial page of business listings
             loadPage(1);
         });
