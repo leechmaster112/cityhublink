@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cityhublink.directory - Business Directory</title>
+    <link rel="canonical" href="https://cityhublink.directory/" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito Sans&family=Inter&display=swap');
         
@@ -283,8 +284,8 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="/" class="site-name" id="site-name">LocalRank</a>
-                <a href="#" class="get-listed-btn" id="get-listed-btn">Get Listed</a>
+                <a href="/" class="site-name" id="site-name">cityhublink.directory</a>
+                <a href="https://localrank.so/citations/" class="get-listed-btn" id="get-listed-btn" rel="nofollow">Get Listed</a>
             </div>
         </div>
     </header>
@@ -404,8 +405,8 @@
                 
                 // Get website if available
                 const website = business.business && business.business.website ? 
-                    `<div class="business-website"><a href="${business.business.website}" target="_blank" rel="noopener noreferrer">${business.business.website.replace(/^https?:\/\//, '')}</a></div>` : 
-                    '';
+                `<div class="business-website">${business.business.website}</div>` : 
+                '';
                 
                 return `
                     <div class="business-card">
@@ -417,7 +418,7 @@
                             ${hours}
                             ${website}
                             ${description ? `<div class="info-divider"></div>${description}` : ''}
-                            <!-- <a href="${business.domain_url || business.pages_url || '#'}" class="view-details">View Details</a> -->
+                            <a href="${business.domain_url || business.pages_url || '#'}" class="view-details">View Details</a>
                         </div>
                     </div>
                 `;
