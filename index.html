@@ -278,6 +278,112 @@
             color: #888;
             font-size: 14px;
         }
+        
+        /* Search Bar Styles */
+        .search-container {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x900/?city');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .search-container h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-button {
+            background-color: #7FCDCD;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-button:hover {
+            filter: brightness(0.9);
+        }
+        
+        /* Network Links Styles */
+        .network-links {
+            background-color: #fff;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .network-links-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .network-title {
+            text-align: center;
+            font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        .network-item {
+            text-align: center;
+        }
+        
+        .network-link {
+            display: block;
+            text-decoration: none;
+            color: #555;
+            padding: 15px 10px;
+            border-radius: 6px;
+            background-color: #7FCDCD15;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 40px 15px;
+            }
+            
+            .search-container h1 {
+                font-size: 1.8rem;
+            }
+            
+            .network-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -290,6 +396,16 @@
         </div>
     </header>
     
+    <div class="search-container">
+        <div id="search-title" style="font-size: 64px; text-align: center; margin: 20px 0; color: #f5f5f5; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">cityhublink.directory</div>
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for businesses" id="search-input">
+            <button class="search-button" id="search-button">
+                Search
+            </button>
+        </div>
+    </div>
+    
     <div class="container">
         <div id="business-grid" class="business-grid">
             <!-- Business listings will be loaded dynamically -->
@@ -301,9 +417,41 @@
         </div>
     </div>
     
+    
+    <div class="network-links">
+        <div class="network-links-container">
+            <h2 class="network-title">Our Partners</h2>
+            <div class="network-grid">
+    
+                <div class="network-item">
+                    <a href="https://bizneighborhood.online" class="network-link" target="_blank">Business Neighborhood</a>
+                </div>
+                <div class="network-item">
+                    <a href="https://biznetworkly.directory" class="network-link" target="_blank">Business Networkly</a>
+                </div>
+                <div class="network-item">
+                    <a href="https://biznook.website" class="network-link" target="_blank">Business Nook</a>
+                </div>
+                <div class="network-item">
+                    <a href="https://bizradiuscore.com" class="network-link" target="_blank">Business Radiuscore</a>
+                </div>
+                <div class="network-item">
+                    <a href="https://biztownclassified.site" class="network-link" target="_blank">Business Townclassified</a>
+                </div>
+                <div class="network-item">
+                    <a href="https://biztownconnect.com" class="network-link" target="_blank">Business Townconnect</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
     <footer>
         <div class="container">
-            © <span id="current-year">2025</span> <span id="footer-domain-name">cityhublink.directory</span>. All rights reserved.
+            <div class="footer-content">
+                <span>© <span id="current-year">2025</span> <span id="footer-domain-name">cityhublink.directory</span>. All rights reserved.</span>
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
         </div>
     </footer>
 
@@ -325,10 +473,16 @@
         
         // Set site name and configure Get Listed button
         document.addEventListener('DOMContentLoaded', () => {
-            // Set site name
-            const siteNameElement = document.getElementById('site-name');
-            if (siteNameElement) {
-                siteNameElement.textContent = formatDomainName(domainName);
+            // Set site name for all elements with site-name id
+            const siteNameElements = document.querySelectorAll('#site-name');
+            siteNameElements.forEach(element => {
+                element.textContent = formatDomainName(domainName);
+            });
+            
+            // Set the search title
+            const searchTitleElement = document.getElementById('search-title');
+            if (searchTitleElement) {
+                searchTitleElement.textContent = formatDomainName(domainName);
             }
             
             // Set footer domain name to match header style
@@ -501,6 +655,41 @@
             if (data) {
                 renderBusinessCards(data.results);
                 renderPagination(data.count, data.next, data.previous);
+            }
+        }
+        
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+            
+            if (searchButton && searchInput) {
+                searchButton.addEventListener('click', performSearch);
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+        });
+        
+        function performSearch() {
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                // For now, we'll just implement a simple client-side filter
+                // This could be enhanced to use a real search API endpoint
+                document.getElementById('business-grid').innerHTML = `
+                    <div class="loading">Searching for "${query}"...</div>
+                `;
+                
+                // In a real implementation, you would call a search API endpoint
+                // For now, we'll just reload the first page
+                loadPage(1);
+                
+                // Future enhancement: Pass search query to API
+                // fetchDirectoryData(1, query);
             }
         }
     </script>
