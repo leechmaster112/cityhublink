@@ -2271,4 +2271,9 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
+    <url>
+      <loc>https://cityhublink.directory/tactics-bend-tmfws</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
 </urlset>
