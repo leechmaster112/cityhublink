@@ -2527,11 +2527,6 @@
       <priority>0.8</priority>
     </url>
     <url>
-      <loc>https://cityhublink.directory/dachdeckerei-berlin-trzbc</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-    <url>
       <loc>https://cityhublink.directory/serenity-apartments-and-studios-jdpbo</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
@@ -2543,6 +2538,11 @@
     </url>
     <url>
       <loc>https://cityhublink.directory/raikou-nxynt</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://cityhublink.directory/dachdeckerei-berlin-gwsak</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
