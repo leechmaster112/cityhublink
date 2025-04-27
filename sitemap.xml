@@ -3211,4 +3211,9 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
+    <url>
+      <loc>https://cityhublink.directory/etel-helsingin-lakiasiaintoimisto-oy-fdyml</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
 </urlset>
