@@ -3226,4 +3226,14 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
+    <url>
+      <loc>https://cityhublink.directory/lakitoimisto-l-nsi-helsinki-uvftn</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://cityhublink.directory/kallion-lakitoimisto-almsv</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
 </urlset>
