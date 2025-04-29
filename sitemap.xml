@@ -3561,4 +3561,9 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
+    <url>
+      <loc>https://cityhublink.directory/6-mile-chophouse-tavern-jwcwa</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
 </urlset>
