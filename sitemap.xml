@@ -5032,11 +5032,6 @@
       <priority>0.8</priority>
     </url>
     <url>
-      <loc>https://cityhublink.directory/dallas-tow-truck-awsbq</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-    <url>
       <loc>https://cityhublink.directory/ag-construction-vencu</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
@@ -5193,6 +5188,11 @@
     </url>
     <url>
       <loc>https://cityhublink.directory/golden-care-giumo</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://cityhublink.directory/dallas-tow-truck-aacgd</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
